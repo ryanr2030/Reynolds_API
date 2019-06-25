@@ -1,0 +1,9 @@
+Hi
+The
+Book was very interesting.
+98.912
+123
+These are looking good.
+32.66666667
+oof
+Lots of words are very nice on a single line.

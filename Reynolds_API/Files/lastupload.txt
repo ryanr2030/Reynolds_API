@@ -1,0 +1,4 @@
+C:\Users\Ryan\Desktop\Reynolds_API\Reynolds_API\Files\TestAllNumbers
+C:\Users\Ryan\Desktop\Reynolds_API\Reynolds_API\Files\TestAllText
+C:\Users\Ryan\Desktop\Reynolds_API\Reynolds_API\Files\TestNestedNumbers
+C:\Users\Ryan\Desktop\Reynolds_API\Reynolds_API\Files\TestNoNestedNumbers

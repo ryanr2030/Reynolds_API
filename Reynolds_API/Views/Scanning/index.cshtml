@@ -1,0 +1,58 @@
+﻿@model Reynolds_API.Models.DirectoryModel
+@{
+    ViewBag.Title = "index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Scanning</title>
+
+</head>
+<body>
+    <form name="TraversePath" method="post" enctype="multipart/form-data" action="/Scanning">
+        <fieldset>
+            <legend>Path Input</legend>
+            <div name="pickFileDiv">
+                <label for="fileLabel">Input Path: </label>
+                <input name="pathInput" type="text" />
+
+            </div>
+            <div>
+                <input type="checkbox" name="FileCount" value="FileCount"> Get File Count <br />
+                <input type="checkbox" name="DirectoryCount">Get Directory Count<br />
+                <input type="checkbox" name="TotalFileSize">Get Total File Size Contained <br />
+                <input type="checkbox" name="AvgFileSize">Get Average File Size <br />
+
+            </div>
+            <div name="submitDiv">
+                <input type="submit" value="Submit" />
+            </div>
+        </fieldset>
+    </form>
+    <div>
+        @if(Model != null) { 
+            <fieldset>
+                <div> <b>Scanned Directory:</b>  @Model.path </div>
+                @if (Model.fileCount >= 0)
+                {
+                    <div> <b>File Counts:</b>  @Model.fileCount files</div>
+                 }
+                @if (Model.directoryCount >= 0)
+                {
+                    <div> <b>Directory Counts:</b>  @Model.directoryCount directories</div>
+                }
+                @if (Model.sumFileSizes >= 0)
+                {
+                    <div> <b>Sum of File Sizes:</b>  @Model.sumFileSizes bytes</div>
+                }
+                @if (Model.avgFileSize >= 0)
+                {
+                    <div> <b>Average File Size:</b>  @Model.avgFileSize bytes</div>
+                }
+            </fieldset>
+        }
+    </div>
+</body>
+</html>

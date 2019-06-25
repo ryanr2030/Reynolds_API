@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Documentation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="jumbotron">
+    <h1>Scanning</h1>
+    <p class="lead">
+        Parses the file tree of a path entered by a user on the server's local file system.
+        Returns metrics regarding the contents the file tree.
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Exposed Endpoints</h2>
+        <ul>
+            <li>
+                <b>/Scanning</b>
+                </br>Input: None
+                </br>Returns: ActionResult
+                </br>Description: Displays the documentation page for the Scanning endpoint.
+
+            </li>
+            <li>
+                <b>/Scanning/Documentation</b>
+                </br>Input: None
+                </br>Returns: ActionResult
+                </br>Description: Reads form submission and calls the enpoints that corelate with the checkbox form data on the entered path.
+
+            </li>
+            <li>
+                <b>/Scanning/getNumberOfFiles</b>
+                </br>Input: string path
+                </br>Returns: dynamic
+                </br>Description: Function that exposes a public route that returns the
+                number of files below a specified directory. Returns a string error if failed.
+            </li>
+            <li>
+                <b>/Scanning/getNumberOfDirectories</b>
+                </br>Input: string path
+                </br>Returns: dynamic
+                </br>Description: Function that exposes a public route that returns the
+                number of directories below a specific path
+            </li>
+            <li>
+                <b>/Scanning/geFileSizeTotal</b>
+                </br>Input: string path
+                </br>Returns: dynamic
+                </br>Description:  Function that exposes a public route that returns the integer
+                sum of all file sizes in bytes below a specified directory.
+            </li>
+            <li>
+                <b>/Scanning/getAverageFileSize</b>
+                </br>Input: string path
+                </br>Returns: dynamic
+                </br>Function that exposes a public route that returns the integer
+                average of all file sizes in bytes below a specified directory.
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Private Functions</h2>
+            <ul>
+                <li>
+                    <b>ScanLinq</b>
+                    </br>Input: string path, string task
+                    </br>Returns: dynamic
+                    </br>Description: Uses System.IO's GetFiles and GetDirectories function to parse the file
+                        tree of the input path. This method uses the SearOption.AllDirectories, which causes it to fail
+                        if it comes across any permission erorrs. Returns a long or int if successful. If the method fails
+                        it will return an error message as a string.
+                </li>
+                <li>
+                    <b>ScanTreeStack</b>
+                    </br>Input: string path, string task
+                    </br>Returns: dynamic
+                    </br>Description: Executes the specified task and returns the value to the calling endpoint.
+                        Same functionality as ScanLinq except the file tree is parsed using a stack based LIFO traversal.
+                        Unauthorized files are passed over and no longer breaking with this implementation.
+                </li>
+                <li>
+                    <b>DirectoryStackTraversal</b>
+                    </br>Input: string path, string task
+                    </br>Returns: dynamic
+                    </br>Description: Uses a LIFO stack to parse the files and subdirectories
+                        in pre-order traversal (subdirectories then files)
+                </li>
+                <li>
+                    <b>GetFileLength</b>
+                    </br>Input: FileInfo fi
+                    </br>Returns: long
+                    </br>Description: Utility function to handle instances when a file in the file tree was deleted after
+                        ScanLinq took a snapshot of the file system at the specified path.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h2>DirectoryModel</h2>
+        <p>
+            The FileModel class is the object that stores the metrics for each of the files. Each time a file is uploaded all of these metrics are calculated and
+            stored localy as a json file (in lieu of a databse).
+        </p>
+        <ul>
+            <li>
+                <b>path</b>
+                </br>Type: string
+                </br>Description: Path of the directory being scanned.
+            </li>
+            <li>
+                <b>fileCount</b>
+                </br>Type: long
+                </br>Description: Number of files contained by the input path.
+            </li>
+            <li>
+                <b>directoryCount</b>
+                </br>Type:  long
+                </br>Description: Number of subdirectories contained by the input path.
+            </li>
+            <li>
+                <b>avgFileSize</b>
+                </br>Type: long
+                </br>Description: Average file size contained by the input path in bytes.
+            </li>
+            <li>
+                <b>sumFileSizes</b>
+                </br>Type: long
+                </br>Description: Sum of all of the file sizes contained by the input path in bytes.
+            </li>
+            <li>
+                <b>numCount</b>
+                </br>Type: int
+                </br>Description: Counts of the total number of numbers in the file.
+            </li>
+            <li>
+                <b>errors</b>
+                </br>Type: List (string)
+                </br>Description: Stores the filenames and directories that were skipped over due to
+                    lack of permissions, path name exceeding the char limit, or were deleted.
+            </li>
+        </ul>
+    </div>

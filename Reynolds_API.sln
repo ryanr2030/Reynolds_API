@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reynolds_API", "Reynolds_API\Reynolds_API.csproj", "{E2CB9108-984D-44CF-86C8-B4528892EEE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestAPI", "UnitTestAPI\UnitTestAPI.csproj", "{513A3442-EB36-4DFD-A4CF-D16B4F82A37C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2CB9108-984D-44CF-86C8-B4528892EEE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2CB9108-984D-44CF-86C8-B4528892EEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2CB9108-984D-44CF-86C8-B4528892EEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2CB9108-984D-44CF-86C8-B4528892EEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513A3442-EB36-4DFD-A4CF-D16B4F82A37C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513A3442-EB36-4DFD-A4CF-D16B4F82A37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513A3442-EB36-4DFD-A4CF-D16B4F82A37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513A3442-EB36-4DFD-A4CF-D16B4F82A37C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0538A282-0239-4707-A59E-BED764D17D58}
+	EndGlobalSection
+EndGlobal

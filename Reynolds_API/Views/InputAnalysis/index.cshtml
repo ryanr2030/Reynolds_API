@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Reynolds_API.Models.FileModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Input and Analysis</title>
+
+</head>
+<body>
+    <form name="uploadFile" method="post" enctype="multipart/form-data" action="/InputAnalysis">
+        <fieldset>
+            <legend>File Input</legend>
+            <div name="pickFileDiv">
+                <label for="fileLabel">Browse Local File: </label>
+                <input name="fileInput" type="file" multiple="multiple" accept="text/*" />
+            </div>
+            <div name="submitDiv">
+                <input type="submit" value="Submit" />
+            </div>
+        </fieldset>
+    </form>
+    <div>
+        @if (Model != null)
+        {
+            foreach (Reynolds_API.Models.FileModel item in Model)
+            {
+        <fieldset>
+            <div> <b>Filename:</b>  @item.fname </div>
+            <div> <b>Server Url:</b>  @item.path  </div>
+            <div> <b>Sum of All Numbers:</b>  @item.sum  </div>
+            <div> <b>Percentage of Numbers:</b>  @item.percentNum &#37; </div>
+            <div><b> Median:</b> @item.median </div>
+            <div><b> Average:</b> @item.avg </div>
+
+            <div>
+                <b>List of Unique Word Occurences (Reverse Alphabetical Order): </b> <br />
+                @foreach (KeyValuePair<string, int> kvp in item.allStrings)
+        {
+            <span>@kvp.Key : @kvp.Value, &nbsp;</span>
+}
+            </div>
+            <div>
+                <b>List of Reversed Unique Word Occurences:</b><br />
+                @foreach (KeyValuePair<string, int> kvp in item.RevStrings)
+        {
+            <span>@kvp.Key : @kvp.Value, &nbsp;</span>
+}
+            </div>
+            <div>
+                <b>List of  Numbers: </b> <br />
+                @foreach (double num in item.numList)
+                 {
+                    <span> @num, &nbsp;</span>
+                    }
+            </div>
+        </fieldset>
+            }
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 1 files
+Detected 13 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: run_classifier.py
+--------------------------------------------------------------------------------
+run_classifier.py:29:8: ERROR: Using member tf.flags in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+run_classifier.py:102:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+run_classifier.py:108:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+run_classifier.py:114:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+run_classifier.py:120:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+run_classifier.py:677:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:696:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:702:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:824:27: ERROR: Using member tf.contrib.cluster_resolver.TPUClusterResolver in deprecated module tf.contrib. tf.contrib.cluster_resolver.TPUClusterResolver cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:827:16: ERROR: Using member tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2 in deprecated module tf.contrib. tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2 cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:828:15: ERROR: Using member tf.contrib.tpu.RunConfig in deprecated module tf.contrib. tf.contrib.tpu.RunConfig cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:833:17: ERROR: Using member tf.contrib.tpu.TPUConfig in deprecated module tf.contrib. tf.contrib.tpu.TPUConfig cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+run_classifier.py:859:14: ERROR: Using member tf.contrib.tpu.TPUEstimator in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimator cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+================================================================================
+Detailed log follows:
+
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'run_classifier.py'
+ outputting to 'run_classifier.py'
+--------------------------------------------------------------------------------
+
+29:8: ERROR: Using member tf.flags in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+102:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+108:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+114:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+120:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags has been removed, please use the argparse or absl modules if you need command line parsing.
+199:9: INFO: Renamed 'tf.gfile.Open' to 'tf.io.gfile.GFile'
+461:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+462:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+463:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+465:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+466:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+467:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+468:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+483:11: INFO: Renamed 'tf.python_io.TFRecordWriter' to 'tf.io.TFRecordWriter'
+487:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+514:19: INFO: Renamed 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+515:20: INFO: Renamed 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+516:21: INFO: Renamed 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+517:19: INFO: Renamed 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+518:25: INFO: Renamed 'tf.FixedLenFeature' to 'tf.io.FixedLenFeature'
+523:14: INFO: Added keywords to args of function 'tf.parse_single_example'
+523:14: INFO: Renamed 'tf.parse_single_example' to 'tf.io.parse_single_example'
+530:12: INFO: Changed tf.to_int32 call to tf.cast(..., dtype=tf.int32).
+547:8: INFO: Renamed 'tf.contrib.data.map_and_batch' to 'tf.data.experimental.map_and_batch'
+594:19: INFO: tf.get_variable: Default use_resource to False. This will use (deprecated) reference variables. Removing this argument will work in most cases.
+
+594:19: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+596:18: INFO: tf.truncated_normal_initializer requires manual check. Initializers no longer have the dtype argument in the constructor or partition_info argument in the __call__ method.
+The calls have been converted to compat.v1 forsafety (even though they may already have been correct).
+596:18: INFO: Renamed 'tf.truncated_normal_initializer' to 'tf.compat.v1.initializers.truncated_normal'
+598:16: INFO: tf.get_variable: Default use_resource to False. This will use (deprecated) reference variables. Removing this argument will work in most cases.
+
+598:16: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+599:47: INFO: tf.zeros_initializer requires manual check. Initializers no longer have the dtype argument in the constructor or partition_info argument in the __call__ method.
+The calls have been converted to compat.v1 forsafety (even though they may already have been correct).
+599:47: INFO: Renamed 'tf.zeros_initializer' to 'tf.compat.v1.initializers.zeros'
+601:7: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+604:21: INFO: Changing keep_prob arg of tf.nn.dropout to rate
+
+613:24: INFO: Added keywords to args of function 'tf.reduce_sum'
+614:11: INFO: Added keywords to args of function 'tf.reduce_mean'
+627:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+629:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+639:32: INFO: Added keywords to args of function 'tf.shape'
+647:12: INFO: Renamed 'tf.trainable_variables' to 'tf.compat.v1.trainable_variables'
+656:10: INFO: Renamed 'tf.train.init_from_checkpoint' to 'tf.compat.v1.train.init_from_checkpoint'
+657:17: INFO: Renamed 'tf.train.Scaffold' to 'tf.compat.v1.train.Scaffold'
+661:8: INFO: Renamed 'tf.train.init_from_checkpoint' to 'tf.compat.v1.train.init_from_checkpoint'
+663:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+668:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+677:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+685:22: INFO: Added keywords to args of function 'tf.argmax'
+686:19: INFO: tf.metrics.accuracy requires manual check. tf.metrics have been replaced with object oriented versions in TF 2.0 and after. The metric function calls have been converted to compat.v1 for backward compatibility. Please update these calls to the TF 2.0 versions.
+686:19: INFO: Renamed 'tf.metrics.accuracy' to 'tf.compat.v1.metrics.accuracy'
+688:15: INFO: tf.metrics.mean requires manual check. tf.metrics have been replaced with object oriented versions in TF 2.0 and after. The metric function calls have been converted to compat.v1 for backward compatibility. Please update these calls to the TF 2.0 versions.
+688:15: INFO: Renamed 'tf.metrics.mean' to 'tf.compat.v1.metrics.mean'
+696:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+702:20: ERROR: Using member tf.contrib.tpu.TPUEstimatorSpec in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimatorSpec cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+774:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+784:2: INFO: Renamed 'tf.logging.set_verbosity' to 'tf.compat.v1.logging.set_verbosity'
+784:27: INFO: Renamed 'tf.logging.INFO' to 'tf.compat.v1.logging.INFO'
+808:2: INFO: Renamed 'tf.gfile.MakeDirs' to 'tf.io.gfile.makedirs'
+824:27: ERROR: Using member tf.contrib.cluster_resolver.TPUClusterResolver in deprecated module tf.contrib. tf.contrib.cluster_resolver.TPUClusterResolver cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+827:16: ERROR: Using member tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2 in deprecated module tf.contrib. tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2 cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+828:15: ERROR: Using member tf.contrib.tpu.RunConfig in deprecated module tf.contrib. tf.contrib.tpu.RunConfig cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+833:17: ERROR: Using member tf.contrib.tpu.TPUConfig in deprecated module tf.contrib. tf.contrib.tpu.TPUConfig cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+859:14: ERROR: Using member tf.contrib.tpu.TPUEstimator in deprecated module tf.contrib. tf.contrib.tpu.TPUEstimator cannot be converted automatically. tf.contrib will not be distributed with TensorFlow 2.0, please consider an alternative in non-contrib TensorFlow, a community-maintained repository, or fork the required code.
+871:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+872:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+873:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+874:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+898:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+899:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+902:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+922:9: INFO: Renamed 'tf.gfile.GFile' to 'tf.io.gfile.GFile'
+923:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+925:8: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+944:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+945:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+948:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+960:9: INFO: Renamed 'tf.gfile.GFile' to 'tf.io.gfile.GFile'
+962:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
+981:2: INFO: Renamed 'tf.app.run' to 'tf.compat.v1.app.run'
+--------------------------------------------------------------------------------
+

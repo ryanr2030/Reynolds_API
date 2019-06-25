@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Documentation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="jumbotron">
+    <h1>Input and Analysis</h1>
+    <p class="lead">Parses files entered by a user and returns metrics regarding the contents of the input file(s).
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Exposed Endpoints</h2>
+        <ul>
+            <li>
+                <b>/InputAnalysis</b>
+                <br>Input: HttpPostedFileBase
+                <br>Returns: ActionResult
+                <br>Description: Takes in posted files and calls the /InputAnalysis/Upload enpoint. Displays the resulting list of FileModels and their values to the index if the upload is successfull.
+            </li>
+            <li>
+                <b>/InputAnalysis/Documenation</b>
+                <br>Input: None
+                <br>Returns: ActionResult
+                <br>Description: Displays the documentation page for the Input and Analysis endpoint. 
+            </li>
+            <li>
+                <b>/InputAnalysis/ContainsString</b>
+                <br>Input: string lookupstring, string[] filenames
+                <br>Returns: JsonResult
+                <br>Description: Checks each files analytics.json allStrings Dictionary against an input string to see if the file contains it. Returns a json response
+                     with a boolean whether it contains the word, the number of occurences, and the filename. Note this checks for individual word occurences. An additional
+                     endpoint is needed for line occurences. If no filenames are passed the last uploaded file(s) are searched.
+            </li>
+            <li>
+                <b>/InputAnalysis/getSum</b>
+                <br>Input: string[] filenames
+                <br>Returns: JsonResult
+                <br>Description: Retrieves the sum of all numbers stored as the 'sum' variable in the analytics.json file. Returns a json response with the filename and the sum value.
+                     Defualts to the last uploaded file(s) if no input name is given.
+            </li>
+            <li>
+                <b>/InputAnalysis/getNumCount</b>
+                <br>Input: string[] filenames
+                <br>Returns: JsonResult
+                <br>Description: Retrieves the count of numbers stored as the 'numCount' in the analytics.json file. Returns a 
+                    json response with the file name and count of numbers. Defaults to the last uploaded file(s) if no input name is given.
+
+            </li>
+            <li>
+                <b>/InputAnalysis/Upload</b>
+                <br>Input: HttpPostedFileBase fileInput
+                <br>Returns: JsonResult
+                <br>Description: Takes in Http file inputs. Calls parseFiles() to parse the files and return FileModel Objects for each file.
+                    Each FileModel is saved as a json file in an endpoint /Files/filename/analytics.json. Each original input file is also saved in memory under
+                    /Files/filename/filename.fileextension. A list of FileModels is returned to be consumed by /InputAnalysis/index or another client. 
+                    See parseFiles() for more information on how the FileModels are populated.
+            </li>
+       </ul>
+       </div>
+</div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Private Functions</h2>
+            <ul>
+                <li>
+                    <b>parseFiles</b>
+                    <br>Input: HttpPostedFileBase fileInput, string path
+                    <br>Returns: FileModel
+                    <br>Description: Loads a posted file into a byte array. Each line is encoded into a UTF8 string as lowercase.
+                    The string is split into a word array and a number array using two regexes. Nested numbers are extracted from strings
+                    Example: "you32.1 \n hello world\n 28.1" The numbers extracted will be 28.1 and 32.1. The word occurences would be you:1, world:1, hello:1
+                </li>
+                <li>
+                    <b>reverseStrings</b>
+                    <br>Input: Sorted Dictionary (string, int) words
+                    <br>Returns: Sorted Dictionary (string, int)
+                    <br>Description: Utility function to update key values in a dictionary.
+                </li>
+                <li>
+                    <b>ReverseWord</b>
+                    <br>Input: string word
+                    <br>Returns: string
+                    <br>Description: Utility function to reverse the chars in a word.
+                </li>
+                <li>
+                    <b>median</b>
+                    <br>Input: List (double) numbers
+                    <br>Returns: double
+                    <br>Description: Utility function to calculate the median of a list of doubles.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h2>FileModel</h2>
+        <p>The FileModel class is the object that stores the metrics for each of the files. Each time a file is uploaded all of these metrics are calculated and
+            stored localy as a json file (in lieu of a databse).</p>
+        <ul>
+            <li>
+                <b>fname</b>
+                <br>Type: string
+                <br>Description: Name of the file including the extension.
+            </li>
+            <li>
+                <b>path</b>
+                <br>Type: string
+                <br>Description: Path to the location of the file on the server.
+            </li>
+            <li>
+                <b>allStrings</b>
+                <br>Type: SortedDictionary Key:string (word) Value: int (occurence)
+                <<br>Description: Dictionary containing all individual words and their occurences in the file.
+                Sorted in reverse alphabetical order (z-a). Contractions are split by their punctuation.
+            </li>
+            <li>
+                <b>revStrings</b>
+                <br>Type: SortedDictionary Key:string (word) Value: int (occurence)
+                <br>escription: Dictionary containing all individual words reversed and their occurences in the file.
+                Sorted in reverse alphabetical order (z-a). Contractions are by their punctuation..
+            </li>
+            <li>
+                <b>numList</b>
+                <br>Type: List (double)
+                <br>Description: List of all the numbers in the file as doubles (sorted in ascending order). 
+            </li>
+            <li>
+                <b>sum</b>
+                <br>Type: int
+                <br>Description: Sums of all numbers (Decimal summation rounded at the end). Explicitly stated as a int in spec.
+            </li>
+            <li>
+                <b>numCount</b>
+                <br>Type: int
+                <br>Description: Counts of the total number of numbers in the file.
+            </li>
+            <li>
+                <b>avg</b>
+                <br>Type: double
+                <br>Description: Average of all numbers in the file (Rounded to 2 decimal places).
+            </li>
+            <li>
+                <b>median</b>
+                <br>Type: double
+                <br>Description: Median of all numbers in the file (Rounded to 2 decimal places).
+            </li>
+            <li>
+                <b>percentNum</b>
+                <br>Type: double
+                <br>Description: Percentage of numbers in the document (Rounded to 2 decimal places)  (Total Numbers/(Total Numbers+Total Words)).
+            </li>
+        </ul>
+    </div>
